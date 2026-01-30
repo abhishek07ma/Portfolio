@@ -52,37 +52,6 @@ The built files will be in the `dist` folder.
 npm run preview
 ```
 
-## Customization
-
-### Update Your Information
-
-1. **Hero Section** (`src/components/Hero.jsx`):
-   - Change "Your Name" to your actual name
-   - Update the title/role
-   - Modify social links (GitHub, LinkedIn, Email)
-
-2. **About Section** (`src/components/About.jsx`):
-   - Update the bio text
-   - Modify skills array with your actual skills
-
-3. **Experience Section** (`src/components/Experience.jsx`):
-   - Replace the experiences array with your work history
-   - Update technologies for each position
-
-4. **Achievements Section** (`src/components/Achievements.jsx`):
-   - Add your own achievements and awards
-   - Customize icons and colors
-
-5. **CV Section** (`src/components/CV.jsx`):
-   - Update education details
-   - Add your certifications
-   - Modify languages section
-   - Connect the download button to your actual CV file
-
-6. **Contact Section** (`src/components/Contact.jsx`):
-   - Update contact information (email, phone, location)
-   - Configure form submission to your backend or email service
-
 ### Color Scheme
 
 Colors are defined as CSS variables in `src/index.css`:
@@ -99,7 +68,3 @@ Colors are defined as CSS variables in `src/index.css`:
 - Framer Motion (animations)
 - React Icons
 - CSS3 with CSS Variables
-
-## License
-
-MIT License - feel free to use this template for your own portfolio!
