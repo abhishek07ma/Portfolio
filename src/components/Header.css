@@ -1,0 +1,156 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 31%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 1.2rem 1.5rem;
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.nav-links li {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.nav-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-bubble {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-icon {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.nav-label {
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.nav-links li.active .nav-bubble {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent));
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(129, 140, 248, 0.5);
+}
+
+.nav-links li.active .nav-icon {
+  color: white;
+}
+
+.nav-links li.active .nav-label {
+  color: var(--primary-color);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.nav-links a:hover .nav-bubble {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.nav-links a:hover .nav-icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nav-links a:hover .nav-label {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .header {
+    top: 20vh;
+  }
+  
+  .nav-links {
+    padding: 0.8rem 1rem;
+    gap: 0;
+  }
+  
+  .nav-links li {
+    padding: 0 0.4rem;
+  }
+  
+  .nav-bubble {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .nav-icon {
+    font-size: 1rem;
+  }
+  
+  .nav-label {
+    font-size: 0.6rem;
+  }
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent));
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(129, 140, 248, 0.5);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  box-shadow: 0 15px 40px rgba(129, 140, 248, 0.6);
+  transform: translateY(-3px);
+}
