@@ -4,9 +4,11 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
-import Achievements from './components/Achievements'
 import Education from './components/Education'
 import Certificates from './components/Certificates'
+import Projects from './components/Projects'
+import Achievements from './components/Achievements'
+import CV from './components/CV'
 import Contact from './components/Contact'
 import './App.css'
 
@@ -19,7 +21,9 @@ function App() {
       <Experience />
       <Education />
       <Certificates />
+      <Projects />
       <Achievements />
+      <CV />
       <Contact />
     </div>
   )

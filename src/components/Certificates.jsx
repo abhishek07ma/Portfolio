@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { FaCertificate, FaAward, FaCheckCircle, FaExternalLinkAlt, FaTimes } from 'react-icons/fa'
 import './Certificates.css'
 
@@ -40,6 +41,7 @@ const Certificates = () => {
   ]
 
   return (
+    <>
     <section id="certificates" className="certificates" ref={ref}>
       <div className="container">
         <motion.div
@@ -83,61 +85,66 @@ const Certificates = () => {
         </motion.div>
       </div>
 
-      {/* Certificate Modal */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            className="certificate-modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedCert(null)}
-          >
-            <motion.div
-              className="certificate-modal"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button className="modal-close" onClick={() => setSelectedCert(null)}>
-                <FaTimes />
-              </button>
-              
-              <div className="modal-header">
-                <span className="modal-icon">{selectedCert.icon}</span>
-                <h2>{selectedCert.title}</h2>
-                <p className="modal-issuer">{selectedCert.issuer}</p>
-                <span className="modal-date">{selectedCert.date}</span>
-              </div>
-              
-              <div className="modal-body">
-                <h3>About this Certificate</h3>
-                <p className="modal-description">{selectedCert.description}</p>
-                
-                <h3>Key Learnings</h3>
-                <ul className="modal-details">
-                  {selectedCert.details.map((detail, idx) => (
-                    <li key={idx}>{detail}</li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="modal-footer">
-                <a 
-                  href={selectedCert.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="view-certificate-btn"
-                >
-                  <FaExternalLinkAlt /> View Certificate
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
+
+      {/* Certificate Modal — rendered via portal to escape section stacking context */}
+      {createPortal(
+        <AnimatePresence>
+          {selectedCert && (
+            <motion.div
+              className="certificate-modal-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)}
+            >
+              <motion.div
+                className="certificate-modal"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="modal-close" onClick={() => setSelectedCert(null)}>
+                  <FaTimes />
+                </button>
+                
+                <div className="modal-header">
+                  <span className="modal-icon">{selectedCert.icon}</span>
+                  <h2>{selectedCert.title}</h2>
+                  <p className="modal-issuer">{selectedCert.issuer}</p>
+                  <span className="modal-date">{selectedCert.date}</span>
+                </div>
+                
+                <div className="modal-body">
+                  <h3>About this Certificate</h3>
+                  <p className="modal-description">{selectedCert.description}</p>
+                  
+                  <h3>Key Learnings</h3>
+                  <ul className="modal-details">
+                    {selectedCert.details.map((detail, idx) => (
+                      <li key={idx}>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="modal-footer">
+                  <a 
+                    href={selectedCert.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="view-certificate-btn"
+                  >
+                    <FaExternalLinkAlt /> View Certificate
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   )
 }
 

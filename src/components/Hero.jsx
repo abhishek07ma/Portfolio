@@ -55,14 +55,16 @@ const Hero = () => {
           >
             Get In Touch
           </motion.button>
-          <motion.button 
+          <motion.a
+            href="https://drive.google.com/file/d/1IT0OMQLeA9gCMMkFcMccbIWozTgqiH13/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-secondary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('cv')?.scrollIntoView({ behavior: 'smooth' })}
           >
             View CV
-          </motion.button>
+          </motion.a>
         </motion.div>
         
         <motion.div variants={itemVariants} className="social-links">

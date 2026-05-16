@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { FaHome, FaUser, FaBriefcase, FaTrophy, FaGraduationCap, FaCertificate, FaEnvelope, FaArrowUp } from 'react-icons/fa'
+import { FaHome, FaUser, FaBriefcase, FaTrophy, FaGraduationCap, FaCertificate, FaEnvelope, FaArrowUp, FaCode } from 'react-icons/fa'
 import './Header.css'
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
       setScrolled(window.scrollY > 100)
       
       // Track active section
-      const sections = ['home', 'about', 'experience', 'education', 'certificates', 'achievements']
+      const sections = ['home', 'about', 'experience', 'education', 'certificates', 'projects', 'achievements']
       const current = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -42,8 +42,8 @@ const Header = () => {
     { name: 'Experience', icon: FaBriefcase },
     { name: 'Education', icon: FaGraduationCap },
     { name: 'Certificates', icon: FaCertificate },
+    { name: 'Projects', icon: FaCode },
     { name: 'Achievements', icon: FaTrophy },
-    
   ]
 
   return (

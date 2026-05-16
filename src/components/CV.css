@@ -2,6 +2,15 @@
   background: transparent;
 }
 
+.cv-description {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
 .cv-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -21,6 +30,8 @@
   gap: 0.8rem;
   box-shadow: 0 10px 30px rgba(129, 140, 248, 0.4);
   transition: all 0.3s ease;
+  text-decoration: none;
+  pointer-events: auto;
 }
 
 .download-btn:hover {
@@ -28,141 +39,14 @@
   transform: translateY(-2px);
 }
 
-.cv-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.cv-section {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  padding: 2rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(129, 140, 248, 0.3);
-}
-
-.section-icon {
-  font-size: 1.8rem;
-  color: var(--primary-color);
-}
-
-.section-header h3 {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-}
-
-.cv-item {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  transition: transform 0.2s ease;
-  border-left: 3px solid var(--primary-color);
-}
-
-.cv-item:hover {
-  transform: translateX(5px);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.cv-item h4 {
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.institution {
-  color: var(--primary-color);
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.details {
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.cert-badge {
-  padding: 1rem;
-  background: rgba(129, 140, 248, 0.1);
-  border: 1px solid rgba(129, 140, 248, 0.3);
-  border-radius: 10px;
-  text-align: center;
-  color: var(--primary-color);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.cert-badge:hover {
-  background: rgba(129, 140, 248, 0.2);
-  border-color: var(--primary-color);
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(129, 140, 248, 0.3);
-}
-
-.languages-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.language-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  border-left: 3px solid var(--primary-color);
-  transition: all 0.3s ease;
-}
-
-.language-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateX(5px);
-}
-
-.lang-name {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.lang-level {
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  padding: 0.3rem 1rem;
-  background: rgba(129, 140, 248, 0.2);
-  border-radius: 20px;
-  border: 1px solid rgba(129, 140, 248, 0.3);
-}
-
 @media (max-width: 768px) {
-  .cv-content {
-    grid-template-columns: 1fr;
+  .cv-description {
+    font-size: 1rem;
+    padding: 0 1rem;
   }
   
-  .cert-grid {
-    grid-template-columns: 1fr;
+  .download-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
   }
 }
