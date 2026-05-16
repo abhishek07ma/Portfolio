@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { FaGithub, FaExternalLinkAlt, FaCode, FaReact, FaNodeJs, FaDatabase, FaRobot, FaVideo } from 'react-icons/fa'
-import { SiMongodb, SiExpress, SiSocketdotio, SiRedis, SiWebrtc, SiGooglegemini } from 'react-icons/si'
+import { SiMongodb, SiExpress, SiSocketdotio, SiRedis } from 'react-icons/si'
 import './Projects.css'
 
 const techIcons = {
