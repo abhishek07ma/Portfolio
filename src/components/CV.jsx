@@ -7,8 +7,8 @@ import './CV.css'
 const CV = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  
-  const cvDriveLink = 'https://drive.google.com/file/d/1TVA1YsGJ7uvzUQdK516IxGhXMjB7nZLL/view?usp=drive_link'
+
+  const cvDriveLink = 'https://drive.google.com/file/d/1I6NQL7Xa0yL_Ef4JTwePHfv9meApgEei/view?usp=drive_link'
 
   return (
     <section id="cv" className="cv" ref={ref}>
@@ -20,7 +20,7 @@ const CV = () => {
         >
           Curriculum Vitae
         </motion.h2>
-        
+
         <motion.p
           className="cv-description"
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ const CV = () => {
         >
           View my complete resume with detailed information about my education, experience, and skills.
         </motion.p>
-        
+
         <motion.div
           className="cv-header"
           initial={{ opacity: 0, y: 20 }}

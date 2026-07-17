@@ -13,8 +13,8 @@ const Education = () => {
       degree: 'Bachelor of Computer Science & Engineering',
       school: 'Kalinga Institute of Industrial Technology',
       year: '2023 - 2027',
-      cgpa: '8.00',
-      description: 'Currently pursuing a Bachelor of Technology in Computer Science at Kalinga Institute of Industrial Technology (KIIT), building a strong foundation in software development, data structures, and modern web technologies'
+      cgpa: '8.08',
+      description: 'Currently pursuing a Bachelor of Technology in Computer Science. Coursework: Object-Oriented Design, Data Structures & Algorithms, Distributed Systems, Artificial Intelligence, Machine Learning, Computer Networking, Databases.'
     },
     {
       degree: 'Higher Secondary Certificate (HSC)',

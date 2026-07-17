@@ -7,71 +7,75 @@ const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const skills = [
-    { name: 'JavaScript', level: 80 },
-    { name: 'Java', level: 85 },
-    { name: 'React.js', level: 85 },
-    { name: 'Node.js', level: 85 },
-    { name: 'Express.js', level: 80 },
-    { name: 'HTML5', level: 92 },
-    { name: 'CSS3', level: 90 },
-    { name: 'Docker', level: 70 },
-    { name: 'Kubernetes', level: 70 },
-    { name: 'MongoDB', level: 80 },
+  const skillGroups = [
+    {
+      title: 'Languages',
+      skills: ['Java', 'JavaScript (ES6+)', 'Python']
+    },
+    {
+      title: 'Frameworks',
+      skills: ['React.js', 'Node.js', 'Express.js', 'Tailwind CSS', 'Socket.IO']
+    },
+    {
+      title: 'Tools & Technologies',
+      skills: ['Git', 'Docker', 'Kubernetes', 'Yarn', 'CI/CD', 'JWT', 'RESTful APIs', 'GraphQL', 'WebRTC']
+    },
+    {
+      title: 'Databases',
+      skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis']
+    }
   ]
 
   return (
     <section id="about" className="about" ref={ref}>
       <div className="container">
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          About Me
+          Skills & Profile
         </motion.h2>
         
         <div className="about-grid">
+          {/* Narrative Column */}
           <motion.div 
             className="about-text"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
           >
+            <h3>Engineering Profile</h3>
             <p>
-              I am a Computer Science undergraduate and passionate Full Stack Developer with a strong interest in building scalable, user-friendly, and performance-driven web applications. I enjoy transforming ideas into functional digital solutions by writing clean, efficient, and maintainable code. My technical foundation includes frontend and backend development, database management, and modern development practices.
+              I am a final-year Computer Science engineering student (B.Tech, KIIT University, graduating 2027) targeting a Software Development Engineer role. I focus on full-stack systems engineering, distributed architectures, and real-time networking.
             </p>
             <p>
-              Along with academic learning, I actively work on real-world projects, hackathons, and open-source contributions to strengthen my practical skills and problem-solving abilities. I believe in continuous learning and regularly explore new technologies and frameworks to stay aligned with industry trends. Whether it’s designing intuitive user interfaces or developing robust backend systems, I approach every project with attention to detail and a growth mindset.
-            </p>
-            <p>
-              I am driven by curiosity, consistency, and the desire to create meaningful impact through technology. Currently, I am seeking opportunities where I can apply my skills, collaborate with talented teams, and contribute to innovative products while continuing to grow as a software engineer.
+              My focus is on writing robust, production-ready code with transaction guarantees, low-latency streaming layers, and efficient cache-invalidation strategies. I look for design bottlenecks and solve them with systematic engineering decisions.
             </p>
           </motion.div>
           
+          {/* Skills Column */}
           <motion.div 
-            className="skills"
-            initial={{ opacity: 0, x: 50 }}
+            className="skills-container"
+            initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
           >
-            <h3>Skills</h3>
-            {skills.map((skill, index) => (
-              <div key={skill.name} className="skill-item">
-                <div className="skill-header">
-                  <span>{skill.name}</span>
-                  <span>{skill.level}%</span>
+            <h3>Technical Skills</h3>
+            <div className="skills-grid">
+              {skillGroups.map((group) => (
+                <div key={group.title} className="skill-group">
+                  <h4>{group.title}</h4>
+                  <div className="skills-list">
+                    {group.skills.map((skill) => (
+                      <span key={skill} className="skill-chip">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="skill-bar">
-                  <motion.div 
-                    className="skill-progress"
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${skill.level}%` } : {}}
-                    transition={{ duration: 1, delay: 0.6 + index * 0.1 }}
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
