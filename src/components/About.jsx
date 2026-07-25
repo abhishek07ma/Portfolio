@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import CodingProfiles from './CodingProfiles'
 import './About.css'
 
 const About = () => {
@@ -29,13 +30,15 @@ const About = () => {
   return (
     <section id="about" className="about" ref={ref}>
       <div className="container">
-        <motion.h2
+        <motion.div
+          className="section-header-group"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          Skills & Profile
-        </motion.h2>
+          <span className="section-prefix">02. // core profiles</span>
+          <h2>Skills & Profile</h2>
+        </motion.div>
         
         <div className="about-grid">
           {/* Narrative Column */}
@@ -47,10 +50,10 @@ const About = () => {
           >
             <h3>Engineering Profile</h3>
             <p>
-              I am a final-year Computer Science engineering student (B.Tech, KIIT University, graduating 2027) targeting a Software Development Engineer role. I focus on full-stack systems engineering, distributed architectures, and real-time networking.
+              I am a passionate Software Engineer and pre-final year Computer Science student at KIIT University (graduating 2027), with a deep focus on Data Structures, Algorithms, and scalable system design. I dedicate my time to mastering complex problem-solving, designing efficient systems, and strengthening core computer science fundamentals.
             </p>
             <p>
-              My focus is on writing robust, production-ready code with transaction guarantees, low-latency streaming layers, and efficient cache-invalidation strategies. I look for design bottlenecks and solve them with systematic engineering decisions.
+              I have solved hundreds of algorithmic challenges across platforms like LeetCode and Codeforces, and recently ranked in the Top 15,000 globally in Google's The Big Code 2026 competition. I strive to write highly optimized, clean, and performant code, aiming to solve real-world bottlenecks with systematic engineering decisions.
             </p>
           </motion.div>
           
@@ -78,6 +81,8 @@ const About = () => {
             </div>
           </motion.div>
         </div>
+
+        <CodingProfiles />
       </div>
     </section>
   )

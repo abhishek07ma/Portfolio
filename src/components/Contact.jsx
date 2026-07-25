@@ -53,13 +53,15 @@ const Contact = () => {
   return (
     <section id="contact" className="contact" ref={ref}>
       <div className="container">
-        <motion.h2
+        <motion.div
+          className="section-header-group"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          Get In Touch
-        </motion.h2>
+          <span className="section-prefix">07. // direct line</span>
+          <h2>Get In Touch</h2>
+        </motion.div>
         
         <div className="contact-content">
           <motion.div

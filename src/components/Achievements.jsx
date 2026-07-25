@@ -182,13 +182,15 @@ const Achievements = () => {
   return (
     <section id="achievements" className="achievements" ref={ref}>
       <div className="container">
-        <motion.h2
+        <motion.div
+          className="section-header-group"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          Achievements
-        </motion.h2>
+          <span className="section-prefix">05. // accolades</span>
+          <h2>Achievements</h2>
+        </motion.div>
 
         <div className="achievements-grid">
           {achievements.map((achievement, index) => (

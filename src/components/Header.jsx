@@ -13,12 +13,11 @@ const Header = () => {
       setScrolled(window.scrollY > 50)
       
       // Track active section using IntersectionObserver
-      const sections = ['home', 'projects', 'about', 'experience', 'education', 'certificates', 'achievements', 'contact']
+      const sections = ['home', 'projects', 'about', 'experience', 'education', 'achievements', 'certificates', 'contact']
       const current = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
-          // Checks if section occupies the mid-viewport
           return rect.top <= 250 && rect.bottom >= 250
         }
         return false
@@ -55,31 +54,27 @@ const Header = () => {
   }
 
   const navItems = [
-    { name: 'Home', id: 'home', icon: FaHome },
-    { name: 'Projects', id: 'projects', icon: FaCode },
-    { name: 'Skills & About', id: 'about', icon: FaUser },
-    { name: 'Experience', id: 'experience', icon: FaBriefcase },
-    { name: 'Education', id: 'education', icon: FaGraduationCap },
-    { name: 'Certificates', id: 'certificates', icon: FaCertificate },
-    { name: 'Achievements', id: 'achievements', icon: FaTrophy },
-    { name: 'Contact', id: 'contact', icon: FaEnvelope },
+    { name: 'home', id: 'home', icon: FaHome },
+    { name: 'projects', id: 'projects', icon: FaCode },
+    { name: 'about', id: 'about', icon: FaUser },
+    { name: 'experience', id: 'experience', icon: FaBriefcase },
+    { name: 'education', id: 'education', icon: FaGraduationCap },
+    { name: 'achievements', id: 'achievements', icon: FaTrophy },
+    { name: 'certificates', id: 'certificates', icon: FaCertificate },
+    { name: 'contact', id: 'contact', icon: FaEnvelope },
   ]
 
   return (
     <>
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
-          <div className="logo" onClick={scrollToTop}>
-            AS<span className="logo-dot">.</span>
-          </div>
-
           {/* Desktop Nav */}
           <nav className="desktop-nav">
             <ul className="nav-links">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id
                 return (
-                  <li key={item.id} className={isActive ? 'active' : ''}>
+                  <li key={item.id} className={`nav-item ${isActive ? 'active' : ''}`}>
                     <a 
                       href={`#${item.id}`}
                       onClick={(e) => {
@@ -87,7 +82,14 @@ const Header = () => {
                         scrollToSection(item.id)
                       }}
                     >
-                      {item.name}
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeNavBubble"
+                          className="active-nav-bubble"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                      <span className="nav-item-text">{item.name}</span>
                     </a>
                   </li>
                 )
@@ -97,11 +99,13 @@ const Header = () => {
 
           {/* Hamburger Toggle */}
           <button 
-            className="hamburger-btn" 
+            className={`hamburger-btn ${mobileMenuOpen ? 'open' : ''}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+            <span className="hamburger-line line-1"></span>
+            <span className="hamburger-line line-2"></span>
+            <span className="hamburger-line line-3"></span>
           </button>
         </div>
       </header>
@@ -111,18 +115,24 @@ const Header = () => {
         {mobileMenuOpen && (
           <motion.div 
             className="mobile-nav-overlay"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             <nav className="mobile-nav">
               <ul className="mobile-nav-links">
-                {navItems.map((item) => {
+                {navItems.map((item, index) => {
                   const isActive = activeSection === item.id
                   const Icon = item.icon
                   return (
-                    <li key={item.id} className={isActive ? 'active' : ''}>
+                    <motion.li 
+                      key={item.id} 
+                      className={isActive ? 'active' : ''}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
                       <a 
                         href={`#${item.id}`}
                         onClick={(e) => {
@@ -133,7 +143,7 @@ const Header = () => {
                         <Icon className="mobile-nav-icon" />
                         <span>{item.name}</span>
                       </a>
-                    </li>
+                    </motion.li>
                   )
                 })}
               </ul>
@@ -152,7 +162,7 @@ const Header = () => {
           scale: scrolled ? 1 : 0
         }}
         transition={{ duration: 0.2 }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.1, translateY: -3 }}
         whileTap={{ scale: 0.9 }}
       >
         <FaArrowUp />

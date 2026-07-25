@@ -29,15 +29,15 @@ const Education = () => {
     <section id="education" className="education" ref={ref}>
       <div className="container">
         <motion.div
+          className="section-header-group"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="section-header">
-            <FaGraduationCap className="section-icon" />
-            <h2 className="section-title">Education</h2>
-            <p className="section-subtitle">Academic Background</p>
-          </div>
+          <span className="section-prefix">04. // academics</span>
+          <h2>Education</h2>
+          <p className="section-subtitle">Academic Background</p>
+        </motion.div>
 
           <div className="education-timeline">
             {educationData.map((edu, index) => (
@@ -74,7 +74,6 @@ const Education = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
       </div>
     </section>
   )

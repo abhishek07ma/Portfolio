@@ -28,13 +28,15 @@ const Experience = () => {
   return (
     <section id="experience" className="experience" ref={ref}>
       <div className="container">
-        <motion.h2
+        <motion.div
+          className="section-header-group"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          Experience
-        </motion.h2>
+          <span className="section-prefix">03. // history</span>
+          <h2>Experience</h2>
+        </motion.div>
         
         <div className="timeline">
           {experiences.map((exp, index) => (

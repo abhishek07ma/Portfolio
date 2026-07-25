@@ -13,11 +13,22 @@
 
 .contact-info,
 .contact-form {
-  background: var(--bg-card);
+  background: rgba(11, 15, 25, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   padding: 2.5rem;
   border-radius: 16px;
   height: 100%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.contact-info:hover,
+.contact-form:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.08), 
+              0 0 20px rgba(99, 102, 241, 0.03);
 }
 
 .contact-info h3 {

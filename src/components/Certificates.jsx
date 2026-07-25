@@ -30,39 +30,37 @@ const Certificates = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="certificates-wrapper"
+          className="section-header-group"
         >
-          <div className="section-header">
-            <FaCertificate className="section-icon" />
-            <h2 className="section-title">Certifications</h2>
-          </div>
-
-          <div className="certificates-compact-grid">
-            {certificatesData.map((cert, index) => (
-              <motion.div
-                key={index}
-                className="certificate-compact-card"
-                initial={{ opacity: 0, y: 15 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <div className="cert-info">
-                  <h3 className="cert-title">{cert.title}</h3>
-                  <span className="cert-meta">{cert.issuer} &bull; {cert.date}</span>
-                </div>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cert-link-btn"
-                  title="Verify Certificate"
-                >
-                  <FaExternalLinkAlt /> Verify
-                </a>
-              </motion.div>
-            ))}
-          </div>
+          <span className="section-prefix">06. // credentials</span>
+          <h2>Certificates</h2>
         </motion.div>
+
+        <div className="certificates-compact-grid">
+          {certificatesData.map((cert, index) => (
+            <motion.div
+              key={index}
+              className="certificate-compact-card"
+              initial={{ opacity: 0, y: 15 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              <div className="cert-info">
+                <h3 className="cert-title">{cert.title}</h3>
+                <span className="cert-meta">{cert.issuer} &bull; {cert.date}</span>
+              </div>
+              <a
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cert-link-btn"
+                title="Verify Certificate"
+              >
+                <FaExternalLinkAlt /> Verify
+              </a>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

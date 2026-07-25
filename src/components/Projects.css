@@ -53,18 +53,21 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--bg-card);
+  background: rgba(11, 15, 25, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   height: 100%;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-hover);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow);
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.08), 
+              0 0 20px rgba(99, 102, 241, 0.03);
 }
 
 .card-gradient-bar {
@@ -294,4 +297,109 @@
   .project-actions {
     padding: 1rem 1.5rem 1.5rem;
   }
+}
+
+/* ─── Systems Architecture Drawer & Tabs ─── */
+.card-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.5rem;
+}
+
+.card-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 4px;
+}
+
+.card-tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.card-tab-btn.active {
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.08);
+  font-weight: 600;
+}
+
+.architecture-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: rgba(8, 12, 22, 0.4);
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.76rem;
+}
+
+.arch-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.step-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  min-width: 90px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.step-badge.client {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #818cf8;
+}
+
+.step-badge.gateway {
+  background: rgba(251, 113, 133, 0.1);
+  border: 1px solid rgba(251, 113, 133, 0.25);
+  color: #fb7185;
+}
+
+.step-badge.database {
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  color: #34d399;
+}
+
+.step-badge.cache {
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  color: #60a5fa;
+}
+
+.step-text {
+  color: var(--text-secondary);
+  text-align: left;
+  line-height: 1.4;
+  font-size: 0.74rem;
+}
+
+.arch-connector {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  line-height: 1;
+  user-select: none;
+  margin-left: 42px;
 }

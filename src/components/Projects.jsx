@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt, FaCode, FaReact, FaNodeJs, FaDatabase, FaRobot, FaVideo } from 'react-icons/fa'
 import { SiMongodb, SiExpress, SiSocketdotio, SiRedis, SiJsonwebtokens } from 'react-icons/si'
@@ -54,6 +54,177 @@ const projects = [
   }
 ]
 
+const ProjectCard = ({ project, index, isInView }) => {
+  const [activeTab, setActiveTab] = useState('narrative')
+
+  const renderArchitecture = () => {
+    if (project.title.includes('Wushu')) {
+      return (
+        <div className="architecture-diagram">
+          <div className="arch-step">
+            <span className="step-badge client">Client App</span>
+            <span className="step-text">Consumes SSE stream for live standing results</span>
+          </div>
+          <div className="arch-connector">▼</div>
+          <div className="arch-step">
+            <span className="step-badge gateway">Express Server</span>
+            <span className="step-text">Validates HMAC payloads & processes judge scoring</span>
+          </div>
+          <div className="arch-connector">▼</div>
+          <div className="arch-step">
+            <span className="step-badge database">MongoDB ACID</span>
+            <span className="step-text">Saves score records inside transactional session</span>
+          </div>
+        </div>
+      )
+    }
+
+    if (project.title.includes('Code')) {
+      return (
+        <div className="architecture-diagram">
+          <div className="arch-step">
+            <span className="step-badge client">Code Upload</span>
+            <span className="step-text">Transmits source code to static analysis pipeline</span>
+          </div>
+          <div className="arch-connector">▼</div>
+          <div className="arch-step">
+            <span className="step-badge cache">Redis Cache</span>
+            <span className="step-text">Queries cache memory for historical code reviews</span>
+          </div>
+          <div className="arch-connector">▼</div>
+          <div className="arch-step">
+            <span className="step-badge database">Gemini API</span>
+            <span className="step-text">Queries Flash 2.0 LLM for bug & complexity report</span>
+          </div>
+        </div>
+      )
+    }
+
+    // Video Platform
+    return (
+      <div className="architecture-diagram">
+        <div className="arch-step">
+          <span className="step-badge client">Signaling Call</span>
+          <span className="step-text">Brokers connection handshake via Socket.IO events</span>
+        </div>
+        <div className="arch-connector">▼</div>
+        <div className="arch-step">
+          <span className="step-badge gateway">ICE Exchange</span>
+          <span className="step-text">Coordinates session description (SDP) handshakes</span>
+        </div>
+        <div className="arch-connector">▼</div>
+        <div className="arch-step">
+          <span className="step-badge database">WebRTC Grid</span>
+          <span className="step-text">Enables low-latency direct P2P audio & video stream</span>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <motion.div
+      className="project-card"
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.15 }}
+    >
+      {/* Highlight bar */}
+      <div className="card-gradient-bar" />
+
+      <div className="project-card-body">
+        {/* Metric Badge */}
+        <div className="metric-badge-container">
+          <span className="metric-badge">{project.metric}</span>
+        </div>
+
+        <h3 className="project-name">{project.title}</h3>
+
+        {/* Technical Summary */}
+        <p className="project-summary-text">{project.summary}</p>
+
+        {/* Tab Controls */}
+        <div className="card-tabs">
+          <button 
+            className={`card-tab-btn ${activeTab === 'narrative' ? 'active' : ''}`}
+            onClick={() => setActiveTab('narrative')}
+          >
+            Narrative
+          </button>
+          <button 
+            className={`card-tab-btn ${activeTab === 'architecture' ? 'active' : ''}`}
+            onClick={() => setActiveTab('architecture')}
+          >
+            System Architecture
+          </button>
+        </div>
+
+        {/* Tab Content */}
+        {activeTab === 'narrative' ? (
+          <div className="project-narrative">
+            <div className="narrative-step">
+              <span className="narrative-label">Problem:</span>
+              <span className="narrative-content">{project.problem}</span>
+            </div>
+            <div className="narrative-step">
+              <span className="narrative-label">Solution:</span>
+              <span className="narrative-content">{project.solution}</span>
+            </div>
+            <div className="narrative-step">
+              <span className="narrative-label">Impact:</span>
+              <span className="narrative-content">{project.impact}</span>
+            </div>
+          </div>
+        ) : (
+          renderArchitecture()
+        )}
+
+        {/* Tech stack */}
+        <div className="tech-stack">
+          {project.tech.map((t) => (
+            <span key={t} className="tech-pill" title={t}>
+              {techIcons[t] || <FaCode />}
+              <span>{t}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="project-actions">
+        {project.github ? (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action-btn github-btn"
+          >
+            <FaGithub /> GitHub Code
+          </a>
+        ) : (
+          <span className="action-btn coming-soon-btn">
+            Private Repo
+          </span>
+        )}
+
+        {project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action-btn live-btn"
+          >
+            <FaExternalLinkAlt /> Live Demo
+          </a>
+        ) : (
+          <span className="action-btn coming-soon-btn">
+            Local Deployment
+          </span>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
@@ -63,102 +234,25 @@ const Projects = () => {
       <div className="container">
         {/* Header */}
         <motion.div
-          className="projects-header"
+          className="section-header-group"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="section-icon-wrap">
-            <FaCode className="projects-section-icon" />
-          </div>
-          <h2 className="projects-title">Featured Projects</h2>
+          <span className="section-prefix">01. // selected works</span>
+          <h2>Featured Projects</h2>
           <p className="projects-subtitle">Production-grade full-stack systems built for performance and scale</p>
         </motion.div>
 
         {/* Cards Grid */}
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <motion.div
+            <ProjectCard
               key={project.title}
-              className="project-card"
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-            >
-              {/* Highlight bar */}
-              <div className="card-gradient-bar" />
-
-              <div className="project-card-body">
-                {/* Metric Badge */}
-                <div className="metric-badge-container">
-                  <span className="metric-badge">{project.metric}</span>
-                </div>
-
-                <h3 className="project-name">{project.title}</h3>
-
-                {/* Technical Summary */}
-                <p className="project-summary-text">{project.summary}</p>
-
-                {/* Problem -> Solution -> Impact */}
-                <div className="project-narrative">
-                  <div className="narrative-step">
-                    <span className="narrative-label">Problem:</span>
-                    <span className="narrative-content">{project.problem}</span>
-                  </div>
-                  <div className="narrative-step">
-                    <span className="narrative-label">Solution:</span>
-                    <span className="narrative-content">{project.solution}</span>
-                  </div>
-                  <div className="narrative-step">
-                    <span className="narrative-label">Impact:</span>
-                    <span className="narrative-content">{project.impact}</span>
-                  </div>
-                </div>
-
-                {/* Tech stack */}
-                <div className="tech-stack">
-                  {project.tech.map((t) => (
-                    <span key={t} className="tech-pill" title={t}>
-                      {techIcons[t] || <FaCode />}
-                      <span>{t}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="project-actions">
-                {project.github ? (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="action-btn github-btn"
-                  >
-                    <FaGithub /> GitHub Code
-                  </a>
-                ) : (
-                  <span className="action-btn coming-soon-btn">
-                    Private Repo
-                  </span>
-                )}
-
-                {project.live ? (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="action-btn live-btn"
-                  >
-                    <FaExternalLinkAlt /> Live Demo
-                  </a>
-                ) : (
-                  <span className="action-btn coming-soon-btn">
-                    Local Deployment
-                  </span>
-                )}
-              </div>
-            </motion.div>
+              project={project}
+              index={index}
+              isInView={isInView}
+            />
           ))}
         </div>
 
