@@ -54,7 +54,7 @@ const Hero = () => {
               Explore Projects <span className="btn-arrow">→</span>
             </button>
             <a
-              href="https://drive.google.com/file/d/1I6NQL7Xa0yL_Ef4JTwePHfv9meApgEei/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1M1G2SwfATMWNjJ42wQpvokHtLxEJbRJb/view"
               target="_blank"
               rel="noopener noreferrer"
               className="hero-btn hero-btn-secondary"

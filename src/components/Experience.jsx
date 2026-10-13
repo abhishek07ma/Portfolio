@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { FaBriefcase, FaCalendar } from 'react-icons/fa'
+import { FaBriefcase, FaCalendar, FaBuilding } from 'react-icons/fa'
 import girlscriptLogo from '../assets/image.png'
 import './Experience.css'
 
@@ -10,6 +10,20 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const experiences = [
+    {
+      title: 'Backend Engineering Intern',
+      company: 'DSekai Technologies',
+      location: 'Bhubaneswar, India',
+      period: 'Aug 2025 – Jul 2026',
+      description: [
+        'Designed and engineered a two-tier RBAC system with jurisdiction-based access control for Wushu MIS, a distributed multi-tenant management platform serving 500+ users across District, State, and National levels.',
+        'Built a real-time judge scoring pipeline using Server-Sent Events (SSE) and designed HMAC-signed Excel import pipelines for tamper-evident bulk data ingestion.',
+        'Scoped and re-architected the fixture management backend — an initially undefined, evolving requirement — into a level-agnostic model supporting multiple event formats (Sanda/Taolu) and organizational hierarchies, validated via Postman-driven integration testing.',
+        'Integrated Razorpay payment processing and automated PDF report generation (jsPDF) for championship, athlete, and nomination records.',
+        'Designed a versioned (v1/v2) API layer and a unique player ID generation system with database migration scripts, ensuring backward-compatible rollout of backend changes.'
+      ],
+      technologies: ['Node.js', 'RBAC', 'Server-Sent Events (SSE)', 'HMAC', 'RESTful APIs', 'Razorpay', 'Database Migrations', 'Postman']
+    },
     {
       title: 'Contributor',
       company: 'GirlScript Summer of Code - Internship',
@@ -59,8 +73,12 @@ const Experience = () => {
                 >
                   <div className="card-header">
                     <div className="title-wrapper">
-                      {exp.logo && (
+                      {exp.logo ? (
                         <img src={exp.logo} alt={exp.company} className="company-logo" />
+                      ) : (
+                        <div className="company-logo-fallback" aria-hidden="true">
+                          <FaBuilding />
+                        </div>
                       )}
                       <h3>{exp.title}</h3>
                     </div>
@@ -70,7 +88,10 @@ const Experience = () => {
                     </div>
                   </div>
                   
-                  <h4>{exp.company}</h4>
+                  <h4>
+                    {exp.company}
+                    {exp.location && <span className="experience-location"> • {exp.location}</span>}
+                  </h4>
                   <ul className="experience-description">
                     {exp.description.map((item, i) => (
                       <li key={i}>{item}</li>

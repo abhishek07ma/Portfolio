@@ -99,6 +99,20 @@
   border: 1px solid var(--border-color);
 }
 
+.company-logo-fallback {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  flex-shrink: 0;
+}
+
 .experience-card h3 {
   color: var(--text-primary);
   font-size: 1.25rem;
@@ -110,6 +124,12 @@
   font-size: 1.05rem;
   margin-bottom: 1rem;
   font-weight: 600;
+}
+
+.experience-location {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 .period {
